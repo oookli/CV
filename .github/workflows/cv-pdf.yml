@@ -22,13 +22,12 @@ jobs:
       - name: Build PDF (strip emojis -> pandoc)
         run: |
           mkdir -p dist
-          # Remove common emojis from the stream (keeps your MD intact)
-          sed 's/[💻🌐🤝🎓📎🔗📧]//g' CV.md \
+          perl -CSD -pe 's/\p{Emoji_Presentation}|\p{Extended_Pictographic}//g' CV.md \
             | pandoc --pdf-engine=xelatex \
             -V documentclass=scrartcl \
             -V geometry:margin=1cm \
             -V fontsize=8pt \
-            -o CV.pdf
+            -o dist/CV.pdf
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
