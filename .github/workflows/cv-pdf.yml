@@ -28,7 +28,7 @@ jobs:
             -V documentclass=scrartcl \
             -V geometry:margin=1cm \
             -V fontsize=8pt \
-            -o CV-output.pdf -o CV.pdf
+            -o CV.pdf
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
